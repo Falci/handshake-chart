@@ -4,7 +4,7 @@ import Chart from './Chart';
 import { lineToData } from './utils';
 import './styles.css';
 
-import raw from './chart-sample.csv';
+import raw from './chart-sample';
 const lines = raw.split('\n');
 
 export default () => {
