@@ -4,33 +4,33 @@
 name: Unit Tests
 
 on:
-  # Only for PR against main branch
-  pull_request:
-  push:
-    branches: [master]
+    # Only for PR against main branch
+    pull_request:
+    push:
+        branches: [main]
 
 jobs:
-  tests:
-    runs-on: ubuntu-latest
+    tests:
+        runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [12.x]
+        strategy:
+            matrix:
+                node-version: [12.x]
 
-    steps:
-      - uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node-version }}
-      - name: Install
-        run: npm install
-      - name: Install
-        run: npm build
+        steps:
+            - uses: actions/checkout@v2
+            - name: Use Node.js ${{ matrix.node-version }}
+              uses: actions/setup-node@v1
+              with:
+                  node-version: ${{ matrix.node-version }}
+            - name: Install
+              run: npm install
+            - name: Install
+              run: npm build
 
-      - name: Deploy to Skynet
-        uses: kwypchlo/deploy-to-skynet-action@main
-        with:
-          upload-dir: build
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          registry-seed: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' && secrets.REGISTRY_SEED || '' }}
+            - name: Deploy to Skynet
+              uses: kwypchlo/deploy-to-skynet-action@main
+              with:
+                  upload-dir: build
+                  github-token: ${{ secrets.GITHUB_TOKEN }}
+                  registry-seed: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' && secrets.REGISTRY_SEED || '' }}
