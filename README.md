@@ -1,2 +1,3 @@
 # handshake-chart
-Created with CodeSandbox
+
+Some data about Handshake Covenants
